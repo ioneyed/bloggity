@@ -5,7 +5,15 @@ This version of Bloggity will be created using Spring and JPA. This will demonst
 ## Tech Used
 
 Spring Boot
+
 Thymeleaf (Render initial index page)
+
 Spring Security
+
 JPA
+
 H2 Database (local database engine)
+
+## Step 0 - Plumbing
+
+Plumbing will happen in just about any project that you create. This is the step where we set up our h2 configuration and basic project configuration.
