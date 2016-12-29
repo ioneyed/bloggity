@@ -1,0 +1,46 @@
+# Any configuration indented (whitespace matters, be consistent) [Best Practice]
+# See more common application properties for spring here
+# [https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html]
+spring:
+  # This section will configure our Datasource to be used in Spring's implementation of a Database Connection Pool.
+  datasource:
+    # This is the datasource information needed to connect to the database. Since we are using an H2
+    # Database we will specify the driver classname here.
+    dataSourceClassName: org.h2.Driver
+    # This is the url connection string to connect to our in-memory h2 database
+    # Here are the documents on flags used: http://www.h2database.com/html/features.html#database_url
+    url: jdbc:h2:mem:bloggitydb;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1;
+    username:
+    password:
+  h2:
+    # With H2 databases you can only connect to a database with the selected user once meaning you will
+    # not be able to use your existing database query tool (such as Dbeaver, SquirrelDs). So this feature
+    # will enable a Website URL at <ip>:<port if application>:<port>/h2-console
+    console:
+      enabled: true
+      # By default the console path will be /h2-console however the property below will allow that to be changed.
+      # Uncomment and change the value to enable a non-default url to the h2 console.
+      # path: /somenewpath
+  jpa:
+    # Name of the target database to operate on, auto-detected by default.
+    database-platform: org.hibernate.dialect.H2Dialect
+    # Target database to operate on, auto-detected by default.
+    database: H2
+    # Register OpenEntityManagerInViewInterceptor. Binds a JPA EntityManager to the thread for the entire processing of the request.
+    openInView: false
+    # Enable logging of SQL statements. [BEST PRACTICE] Turn this off (via false value) for production.
+    show_sql: true
+    # Initialize the schema on startup. [BEST PRACTICE] Turn this off (via false value) for production.
+    generate-ddl: true
+    # Hibernate specific configurations.
+    hibernate:
+        # DDL Mode - Default to "create-drop" when using an embedded database, "none" otherwise.
+        ddl-auto: create-drop
+        # Hibernate 4 naming strategy fully qualified name. Not supported with Hibernate 5.
+        naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+  thymeleaf:
+    # Template mode to be applied to templates.
+    mode: LEGACYHTML5
+  profiles:
+    # Tell Spring what profile is active.
+    active: development
